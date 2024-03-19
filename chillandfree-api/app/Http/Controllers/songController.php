@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\song;
+use App\Traits\ResponseTrait;
+use Illuminate\Http\Response;
 
 class songController extends Controller
 {
@@ -13,7 +16,13 @@ class songController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $data = song::getAll();
+            return $this->responseSuccess($data,'Thành công',200);
+        }catch (\Exception $e) {
+            return $this->resposeError(null,'Thất bại',Response::HTTP_INTERNAL_SERVER_ERROR);
+         }
+        
     }
 
     /**

@@ -14,4 +14,9 @@ class song extends Model
     ];
 
     protected $table = 'song';
+
+    public static function getAll() {
+        $data = song::get();
+        return $data;
+    }
 }
